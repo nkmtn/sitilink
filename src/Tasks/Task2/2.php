@@ -58,6 +58,8 @@ $list = array (
  *
  */
 
+const MINUTES_IN_HOUR = 60;
+
 const MINUTES_IN_DAY = 24 * 60;
 
 const TIME_FRAME_PATTERN = "/(\d\d):(\d\d)-(\d\d):(\d\d)/";
@@ -80,10 +82,10 @@ function isValidTimeInterval(string $interval) : bool {
     }
 
     if (
-        (int) $pieces[0] * (int) $pieces[1] > MINUTES_IN_DAY
-        || (int) $pieces[2] * (int) $pieces[3] > MINUTES_IN_DAY
-        || (int) $pieces[0] * MINUTES_IN_DAY + (int) $pieces[1]
-            >= (int) $pieces[2] * MINUTES_IN_DAY + (int) $pieces[3]
+        (int) $pieces[1] * MINUTES_IN_HOUR + (int) $pieces[2] > MINUTES_IN_DAY
+        || (int) $pieces[3] * MINUTES_IN_HOUR + (int) $pieces[4] > MINUTES_IN_DAY
+        || (int) $pieces[1] * MINUTES_IN_HOUR + (int) $pieces[2]
+            >= (int) $pieces[3] * MINUTES_IN_HOUR + (int) $pieces[4]
     ) {
         return false;
     }
@@ -132,12 +134,16 @@ function canAddTheInterval(string $new) : bool {
  */
 function fromStringToMinutes(string $interval) : array {
     if (!isValidTimeInterval($interval)) {
+        print($interval);
         throw new InvalidArgumentException("incorrect interval in schedule");
     }
 
     $pieces = [];
     preg_match(TIME_FRAME_PATTERN, $interval, $pieces);
-    return [(int) $pieces[0] * MINUTES_IN_DAY + (int) $pieces[1], (int) $pieces[2] * MINUTES_IN_DAY + (int) $pieces[3]];
+    return [
+        (int) $pieces[1] * MINUTES_IN_HOUR + (int) $pieces[2],
+        (int) $pieces[3] * MINUTES_IN_HOUR + (int) $pieces[4]
+    ];
 }
 
 /**

@@ -4,7 +4,7 @@ namespace App\Command;
 
 use App\Tasks\Task3\ParcelPriceCalculationFactory;
 use App\Tasks\Task3\PostalParcel;
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

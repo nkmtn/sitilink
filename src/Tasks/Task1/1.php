@@ -142,5 +142,3 @@ function getWorkersLoginByNearestArea($area) : array {
     }
     return array_merge([], ...$detectedWorkers);
 }
-
-var_dump(getNearestWorkers('Октябрьский'));

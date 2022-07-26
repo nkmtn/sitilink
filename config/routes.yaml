@@ -1,3 +1,11 @@
 index:
     path: /
     controller: App\Controller\MainController::index
+schedle:
+    path: /api/schedule
+    controller: App\Controller\MainController::getSchedule
+    methods: [GET]
+schedle-post:
+    path: /api/schedule-post
+    controller: App\Controller\MainController::postSchedule
+    methods: [POST]

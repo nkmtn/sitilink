@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Олимпиада</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <!-- jsQuery UI CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- jsGrid CSS -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+
+    <!-- Собственные CSS -->
+    {{ encore_entry_link_tags('style') }}
+
+    <!-- jsQuery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <!-- jsQuery UI JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
+
+    <!-- jsGrid related JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+
+    <!-- Собственный JS -->
+    {{ encore_entry_script_tags('schedule') }}
+
+</head>
+<body>
+<div class="container-xl">
+    <div class="col-xl-8 offset-xl-2 py-5">
+        <h1>Олимпиада</h1>
+        <div>
+            <form id="membersForm">
+                <div class="form-group">
+                    <label for="members">Участники</label>
+                    <input type="text" class="form-control" id="membersInput" name="membersInput"
+                           placeholder="введите имена участников через запятую"
+                           pattern="^[А-Яа-яЁё\s,]+$" oninvalid="this.setCustomValidity('Используйте кирилицу, ' +
+                            'пробелы и \'\,\'')"
+                           onchange="try{setCustomValidity('')}catch(e){}">
+                </div>
+                <div class="details-form-field">
+                    <button type="submit" id="save">Добавить</button>
+                </div>
+            </form>
+            <div id="schedule">
+                <h2>Таблица участников</h2>
+                <div id="schedule-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
